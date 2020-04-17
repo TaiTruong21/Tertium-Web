@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  # rest:
+  #   build:
+  #     context: ./rest
+  #   ports:
+  #     - 5001:5000
+  #   volumes:
+  #     - ./rest/src:/app
+
+  ui:
+    build:
+      context: ./ui
+    environment:
+      - REST_SERVER=http://rest:5000
+    ports:
+      - 5000:5000
+    volumes:
+      - ./ui/src:/app
+
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    env_file:
+      ./credentials.env
+    ports:
+      - 3306:3306                     # external port : internal mysql port
+    volumes:
+      - ./persist_db:/var/lib/mysql   # persist when container is stopped!
+    container_name: 140brestdB
+
+volumes:
+  persist_db:
