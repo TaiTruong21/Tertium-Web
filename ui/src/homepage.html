@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Tertium Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="homepage.css"> 
+  </head>
+ 
+  <body>
+    <h1>Tertium
+        <div class="navigation">
+        <a class="active" href="http://localhost:4000/">Home</a>
+        <a href="http://localhost:4000/AboutUs">AboutUs </a>
+        </div>
+    </h1>
+    <p><img class="img" src="https://i.ibb.co/xHsMb27/3Dprint.jpg" alt="image" ></p>
+    <p font-size='40px;'> Printing service dedicating to 3D objects </p>
+    <section>
+    <aside>
+      <p>Got a 3D object design but do not have the technology to print it? Got a 3D printer but have not use it in a while? Tertium 3D printing service will connect you to the nearest 3D printer that meet your needs. </p>
+      <p style='text-align:center;'> Explore your options now </p>
+      <form id="SignupUser" method='GET' action='/SignupUser'>
+      <p style='text-align:center;'> <button class="button button-block" type='submit' name='login_link' onclick="window.location.href = 'http://localhost:4000/SignupPrinter';"> Sign Up to Print </button> </p>
+      </form >  
+      <form id="SignupUser" method='GET' action='/SignupPrinter'>
+      <p style='text-align:center;'> <button class="button button-block" type='submit' name='login_link' onclick="window.location.href = 'http://localhost:4000/SignupPrinter';"> Start your printing business </button> </p>
+      </form>
+    </aside>    
+   </section>
+  </body>
+  
+</html>

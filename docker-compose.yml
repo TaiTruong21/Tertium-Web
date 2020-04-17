@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+
+  rest:
+    build:
+      context: ./rest
+    ports:
+      - 6000:5000
+    environment:
+      - UI_SERVER=http://ui:5000
+    env_file:
+      ./credentials.env
+    volumes:
+      - ./rest/src:/app
+    # CMD python init_db.py
+    # container_name: 140restserver
+
+  ui:
+    build:
+      context: ./ui
+    ports:
+      - 4000:5000
+    environment:
+      - REST_SERVER=http://rest:5000
+    env_file:
+      ./credentials.env
+    volumes:
+      - ./ui/src:/app
+
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    env_file:
+      ./credentials.env
+    ports:
+      - 3306:3306                     # external port : internal mysql port
+    volumes:
+    #  - ./database/persist_db:/var/lib/mysql   # persist when container is stopped!
+      - ./persist_db:/var/lib/mysql
+    container_name: 3D_printer_website
+
+volumes:
+  persist_db:

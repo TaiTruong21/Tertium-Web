@@ -1,0 +1,58 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+body {
+font-family: courier new;
+font-style: inherit;
+font-size: calc(2rem + .1vw);
+text-align: center;
+color:#ffffff; 
+background-color:#1e2c4b;
+}
+
+.navigation a{
+font-style: inherit; 
+float: center;
+color: #f2f2f2;
+text-align: center;
+text-decoration: none;
+font-size: calc(1.5rem + .1vw);
+}
+.navigation a:hover{
+background-color: #7999b6; 
+padding: .5rem .5rem;
+color: white;
+}
+
+.img {
+  float: center;
+  vertical-align: middle;
+  width: 40%;
+  height: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section {
+font-size: 20px;
+width: 100%;
+line-height: 1.6;
+}
+
+button {
+font-family: courier new;
+font-style: inherit;
+font-size: x-large;
+border-radius: 4px;
+padding: .5rem;
+transition-duration: 0.4s;
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+button:hover {
+background-color: #7999b6; 
+color: black;  
+}
+
+
+
