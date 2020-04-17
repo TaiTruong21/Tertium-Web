@@ -1,0 +1,4 @@
+pyramid==1.10
+pyramid-jinja2==2.8
+requests==2.18
+mysql-connector-python

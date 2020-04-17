@@ -1,0 +1,47 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+.button {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    transition: all.5s ease;
+    -webkit-appearance: none;
+    :hover, :focus {
+        background:darken(#1ab188,5%);
+    }
+}
+.button-block {
+    display: block;
+    width: 100%;
+}
