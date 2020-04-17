@@ -1,4 +1,4 @@
 pyramid==1.10
 pyramid-jinja2==2.8
-requests==2.18
+requests==2.20.0
 mysql-connector-python
