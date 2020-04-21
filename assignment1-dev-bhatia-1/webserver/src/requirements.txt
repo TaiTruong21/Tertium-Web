@@ -1,0 +1,4 @@
+pyramid==1.10
+mysql-connector-python
+pyramid-jinja2==2.7
+python-dotenv

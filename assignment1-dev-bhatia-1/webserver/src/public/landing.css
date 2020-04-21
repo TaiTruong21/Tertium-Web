@@ -1,0 +1,96 @@
+/* Run on Code Pen */
+* {box-sizing: border-box;}
+
+body {
+  font-family: "Avenir";
+  background-color: HSLA(0, 0%, 100%, 1.00);
+  padding:1rem;
+}
+
+.Title {
+  text-align:center;
+}
+
+.Title h1 {
+  font-size: calc(1rem + 5vw);
+  font-weight:bold;
+  color:HSLA(217, 93%, 59%, 1.00);
+}
+
+.Title p {
+  font-size: calc(.7rem + 2vw);
+  color:HSLA(134, 0%, 36%, 1.00);
+}
+
+aside {
+  text-align: center;
+  border-radius:20px;
+  padding:1rem;
+  font-size: calc(.3rem + 3vw);
+}
+
+aside h1 {
+  margin: 0px 0px 2px 0px;
+  font-size: calc(1rem + 1.75vw);
+}
+aside h3 {
+  margin: 0px 0px 2px 0px;
+  font-size: calc(1rem + 1.5vw);
+}
+aside h2 {
+  margin: 0px 0px 1rem 0px;
+  font-size: calc(1rem + 1.25vw);
+  color:HSLA(134, 0%, 36%, 1.00);
+}
+aside p {
+  font-size: calc(.7rem + 1vw);
+  color:HSLA(134, 0%, 36%, 1.00);
+}
+
+section.grid2 {
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+
+section.grid3 {
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+
+section.grid4 {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+input {
+  border: 2px solid HSLA(217, 93%, 59%, 1.00);
+  border-radius: 20px;
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: 20px;
+}
+
+button {
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-size: 20px;
+  background-color: HSLA(217, 93%, 59%, 1.00);
+  color: white;
+  border: none;
+}
+
+@media screen and (min-width : 1024px) {
+  section.grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  section.grid3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  section.grid4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
