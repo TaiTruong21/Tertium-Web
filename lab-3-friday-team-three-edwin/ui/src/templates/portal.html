@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: "Roboto", sans-serif;
+			}
+
+			body {
+				background: url(http://getwallpapers.com/wallpaper/full/b/e/d/321353.jpg);
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			h1 {
+				font-size: 5vw;
+				font-family: "Roboto", sans-serif;
+				text-align: center;
+				color: #2f3542;
+				position: fixed;
+				top: 15vh;
+			}
+
+			.logout {
+				position: absolute;
+				top: 1vh;
+				right: 1vw;
+				margin: 5px;
+				border-radius: 4vmin;
+				border: 0;
+				background: #7c6bbd;
+				display: block;
+				border: 2px solid #fff;
+				margin: 20px auto;
+				text-align: center;
+				padding: 14px 40px;
+				outline: none;
+				color: white;
+				transition: 0.25s;
+				cursor: pointer;
+			}
+
+			.logout:hover {
+				background: #4d079c;
+			}
+
+			.console {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				justify-content: center;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+
+			.card {
+				background: #2f3542;
+				width: calc(33%);
+				height: 200px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				color: #fff;
+				cursor: pointer;
+				position: relative;
+				top: 0;
+				transition: top ease 0.3s;
+			}
+
+			.card:hover {
+				top: -10px;
+				transform: scaleY(1.1);
+			}
+
+			.card-icon {
+				font-size: 28px;
+				background: #ff6348;
+				width: 60px;
+				height: 60px;
+				text-align: center;
+				line-height: 60px !important;
+				border-radius: 50%;
+				transition: 0.3s linear;
+			}
+
+			.card:hover .card-icon {
+				background: none;
+				color: #ff6348;
+				transform: scale(1.6);
+			}
+
+			.card p {
+				margin-top: 20px;
+				font-weight: 300;
+				letter-spacing: 2px;
+				max-height: 0;
+				opacity: 0;
+				transition: 0.3s linear;
+				text-align: center;
+			}
+
+			.card:hover p {
+				max-height: 40px;
+				opacity: 1;
+			}
+
+			.card h2 {
+				font-weight: 300;
+				letter-spacing: 2px;
+				text-align: center;
+				max-height: 50px;
+				margin-bottom: 10px;
+			}
+
+			@media screen and (max-width: 800px) {
+				.console {
+					flex-direction: column;
+				}
+				.card {
+					width: 100%;
+					max-width: 300px;
+					margin: 10px 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<input
+			type="button"
+			class="logout"
+			value="Logout"
+			onclick="window.location='/logout'"
+		/>
+		<h1>Jetbot Portal</h1>
+		<div class="console">
+			<div class="card" onclick="window.location='/admin'">
+				<h2>Admin Console</h2>
+				<i class="card-icon fas fa-users-cog"></i>
+				<p>
+					Displays all users and manages user authentication and
+					disqualification
+				</p>
+			</div>
+			<div class="card" onclick="window.location='/controller/{{UserId}}'">
+				<h2>Controller Console</h2>
+				<i class="card-icon fas fa-gamepad"></i>
+				<p>Gives directional instructions to the jetbot</p>
+			</div>
+			<div class="card" onclick="window.location='/tracker'">
+				<h2>Tracker Console</h2>
+				<i class="card-icon fas fa-tachometer-alt"></i>
+				<p>Tracks jetbot's activity</p>
+			</div>
+		</div>
+	</body>
+</html>

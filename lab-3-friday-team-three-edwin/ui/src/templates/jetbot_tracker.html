@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Administrator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="display-4 mb-4 mt-4">Administrator</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Move ID</th>
+                    <th>Init. Time</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Direction</th>
+                    <th>User ID</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for move in moves %}
+                <tr>
+                    <td>{{move.moveId}}</td>
+                    <td>{{move.initiateTime}}</td>
+                    <td>{{move.startTime}}</td>
+                    <td>{{move.endTime}}</td>
+                    <td>{{move.direction}}</td>
+                    <td>{{move.userId}}</td>
+                    <td>{{move.status}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+
+</body>
+
+</html>

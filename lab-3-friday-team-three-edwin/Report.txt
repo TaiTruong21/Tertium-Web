@@ -1,0 +1,10 @@
+Build instruction:
+Server side:
+    run docker-compose up in command line
+    Modify the firewall to allow JetBot's connection if neccessary.
+
+JetBot side:
+    Copy the lab3_jetbot.py file into JetBot system. Make sure that python3 is
+    installed along with requests and jetbot library. Modify the URL variable
+    to http://xxx.xxx.xxx.xxx:5001, where xxx.xxx.xxx.xxx is the host IP of
+    machine running the rest server.

@@ -1,0 +1,114 @@
+{
+    "users": [
+        {
+            "userId": "aa",
+            "password": "4",
+            "status": "Voided"
+        },
+        {
+            "userId": "fsdaa",
+            "password": "41",
+            "status": "Voided"
+        },
+        {
+            "userId": "afd",
+            "password": "123",
+            "status": "Voided"
+        },
+        {
+            "userId": "ads",
+            "password": "1234",
+            "status": "Voided"
+        },
+        {
+            "userId": "4214",
+            "password": "4123",
+            "status": "Voided"
+        },
+        {
+            "userId": "aaa412",
+            "password": "1",
+            "status": "Voided"
+        },
+        {
+            "userId": "aaa413",
+            "password": "31414",
+            "status": "Voided"
+        },
+        {
+            "userId": "yesss",
+            "password": "1234",
+            "status": "Pending"
+        },
+        {
+            "userId": "afadf",
+            "password": "123",
+            "status": "Verified"
+        },
+        {
+            "userId": "asdf",
+            "password": "r124",
+            "status": "Verified"
+        },
+        {
+            "userId": "fasdfasdfa",
+            "password": "421351",
+            "status": "Pending"
+        },
+        {
+            "userId": "ffkalsdfh",
+            "password": "42352",
+            "status": "Pending"
+        },
+        {
+            "userId": "gsfkakhk",
+            "password": "52345234",
+            "status": "Pending"
+        },
+        {
+            "userId": "hfasdklf",
+            "password": "541234523",
+            "status": "Pending"
+        },
+        {
+            "userId": "fjksadf",
+            "password": "562346",
+            "status": "Pending"
+        },
+        {
+            "userId": "iho",
+            "password": "lnio",
+            "status": "Pending"
+        },
+        {
+            "userId": "aws",
+            "password": "aws",
+            "status": "Verified"
+        },
+        {
+            "userId": "fddd",
+            "password": "123",
+            "status": "Verified"
+        },
+        {
+            "userId": "test2",
+            "password": "1234",
+            "status": "Pending"
+        },
+        {
+            "userId": "test3",
+            "password": "12345",
+            "status": "Pending"
+        },
+        {
+            "userId": "DDD",
+            "password": "1323",
+            "status": "Pending"
+        },
+        {
+            "userId": "test250",
+            "password": "4433",
+            "status": "Pending"
+        }
+    ]
+}

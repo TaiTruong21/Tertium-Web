@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Administrator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="display-4 mb-4 mt-4">Administrator</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Password</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.userId}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.status}}</td>
+                    <td>
+                        {% if user.status == 'Verified' %}
+                        <div style="display:inline-flex;">
+                            <p style="margin:5px;">Set</p>
+                            <form name='admin' method='POST' action='/admin'>
+                                <input type="submit" name="void" value={{user.userId}} />
+                            </form>
+                            <p style="margin:5px;">to voided</p>
+                        </div>
+                        {% elif user.status == 'Pending' %}
+                        <div style="display:inline-flex;">
+                            <p style="margin:5px;">Set</p>
+                            <form name='admin' method='POST' action='/admin'>
+                                <input type="submit" name="verify" value={{user.userId}} />
+                            </form>
+                            <p style="margin:5px;">to verified</p>
+                        </div>
+                        {% else %}
+                        <div style="display:inline-flex;">
+                            <p style="margin:5px;">Set</p>
+                            <form name='admin' method='POST' action='/admin'>
+                                <input type="submit" name="verify" value={{user.userId}} />
+                            </form>
+                            <p style="margin:5px;">to verified</p>
+                        </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Administrator</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: "Roboto", sans-serif;
+			}
+
+			body {
+				background: url(https://wallpaperplay.com/walls/full/4/c/c/86378.jpg);
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				margin: 0;
+				padding: 0;
+			}
+
+			h1 {
+				font-size: 5vw;
+				font-family: "Roboto", sans-serif;
+				text-align: center;
+				color: #dff9fb;
+				position: fixed;
+				top: 15vh;
+			}
+
+			.button_wrapper {
+				display: flex;
+				position: absolute;
+				left: 50%;
+				top: 60%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+			}
+
+			.move_btn {
+				font-family: "Roboto", sans-serif;
+				font-size: 1vw;
+				border: none;
+				margin: 20px;
+				padding: 24px;
+				width: 10vw;
+				border-radius: 6px;
+				cursor: pointer;
+				color: #fff;
+				background-size: 200%;
+				transition: 0.6s;
+			}
+
+			.forward {
+				background-image: linear-gradient(to left, #f9ca24, #e98615, #f9ca24);
+			}
+
+			.backward {
+				background-image: linear-gradient(to left, #f88c8c, #eb4d4b, #f88c8c);
+			}
+
+			.left {
+				background-image: linear-gradient(to left, #95afc0, #686de0, #95afc0);
+			}
+
+			.right {
+				background-image: linear-gradient(to left, #e891fa, #a60ac9, #e891fa);
+			}
+
+			.stop {
+				background-image: linear-gradient(to left, #2bcbba, #778ca3, #2bcbba);
+			}
+
+			.move_btn:hover {
+				background-position: right;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1 class="display-4 mb-4 mt-4">
+			Hello {{UserId}}, you're in the controller console
+		</h1>
+
+		<div class="button_wrapper">
+			<form action="/controller/{{UserId}}/forward" method="POST">
+				<button type="submit" class="move_btn forward">forward</button>
+			</form>
+			<form action="/controller/{{UserId}}/backward" method="POST">
+				<button type="submit" class="move_btn backward">backward</button>
+			</form>
+			<form action="/controller/{{UserId}}/left" method="POST">
+				<button type="submit" class="move_btn left">left</button>
+			</form>
+			<form action="/controller/{{UserId}}/right" method="POST">
+				<button type="submit" class="move_btn right">right</button>
+			</form>
+			<form action="/controller/{{UserId}}/stop" method="POST">
+				<button type="submit" class="move_btn stop">stop</button>
+			</form>
+		</div>
+
+		<script>
+			if (window.history.replaceState) {
+				window.history.replaceState(null, null, window.location.href);
+			}
+		</script>
+	</body>
+</html>

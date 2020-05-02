@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Roboto", sans-serif;
+				min-height: 100vh;
+				background-image: url(http://getwallpapers.com/wallpaper/full/2/f/7/321243.jpg);
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+
+			.middle {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.container {
+				position: relative;
+				display: inline-block;
+				padding: 0 1vw;
+				cursor: pointer;
+			}
+
+			.text {
+				font-size: 5vh;
+				text-transform: uppercase;
+				font-weight: 900;
+				position: relative;
+				color: #34495e;
+			}
+
+			.large-display-text {
+				font-size: 8vh;
+				font-weight: 900;
+				position: relative;
+				color: #34495e;
+				text-align: center;
+			}
+
+			.text::before {
+				content: attr(data-text);
+				position: absolute;
+				color: #fff;
+				width: 0;
+				overflow: hidden;
+				transition: 0.6s;
+			}
+
+			.container::before {
+				content: "";
+				width: 0%;
+				height: 100%;
+				position: absolute;
+				background: #0652dd;
+				right: 0;
+				top: 0;
+				transition: 0.6s;
+			}
+
+			.container:hover .text::before,
+			.container:hover::before {
+				width: 100%;
+			}
+		</style>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+	</head>
+	<body>
+		<center>
+			<div class="middle">
+				<div class="large-display-text">
+					You've logged out <br />
+					<br />
+					<br />
+				</div>
+				<span class="container">
+					<div
+						class="text"
+						data-text="Login?"
+						onclick="window.location='/login'"
+					>
+						Login?
+					</div>
+				</span>
+			</div>
+		</center>
+	</body>
+</html>
