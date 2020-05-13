@@ -1,49 +1,144 @@
-  
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.renderers import render_to_response
-from pyramid.response import Response
+#from pyramid.response import FileResponse
 
 import json
 import requests
+import mysql.connector as mysql
 import os
-import time
 REST_SERVER = os.environ['REST_SERVER']
 
-############################## Website rendering #########################
+db_host = "mysql-db"
+db_name = '140b_rest_db'
+db_user = 'admin'
+db_pass = 'adminator'
+
 def main_page(req):
-    return render_to_response('homepage.html',{}, request=req)
+  return render_to_response('index.html', {}, request=req)
+#--- this is called to compare credentials to the value
+def is_valid_user(req):
+  username = req.params['email']
+  password = req.params['password']
 
-def get_SignupUser(req):
-    return render_to_response('SignupUser.html',{}, request=req)
+  print(username)
+  print(password)
+  Books = requests.get(REST_SERVER + "/books").json()
+  for x in Books:
+      user_db = x.get("username")
+      psswd_db = x.get("password")
+      if username == user_db and password == psswd_db:
+          return True
 
-def get_SignupPrinter(req):
-    return render_to_response('SignupPrinter.html',{}, request=req)
+#--- this route will validate login credentials...
+def post_login(req):
+  if is_valid_user(req) == True:
+    return render_to_response('did_login.html', {'error':'logged in.'}, request=req)
+  else:
+    return render_to_response('index.html', {'error':'Invalid Credentials'}, request=req)
 
-def get_AboutUs(req):
-    return render_to_response('AboutUs.html',{}, request=req)
+#--- this route will show a login form
+def get_signup_customer(req):
+    return render_to_response('signup.html',{}, request=req)
 
-############################## Users Info #################################
-def post_SignupUser(req):
-    user_data={
-        'email': req.params['email'],
-        'name': req.params['name'],
-        'password': req.params['password']
+def post_signup_customer(req):
+    user_data = {
+    'First Name': req.params['cust_f_name'],
+    'Last Name': req.params['cust_l_name'],
+    'Email': req.params['cust_email']
     }
-    requests.post(REST_SERVER + "/User", json=user_data)
-    return render_to_response('homepage.html',{}, request=req)
-def post_SignupPrinter(req):
-    printer_data={
-        'email': req.params['email'],
-        'name': req.params['name'],
-        'password': req.params['password'],
-        'printer': req.params['printer'],
-        'address': req.params['address']
-    }
-    requests.post(REST_SERVER + "/Printer", json=printer_data)
-    return render_to_response('homepage.html',{}, request=req)
+    print(user_data)
+    print("Testing out dictionary access: Customer\n")
+    customer_data = list(user_data.values())
+    # customer_data[0] = '"'+ customer_data[0]+'"'
+    # customer_data[1] = '"'+ customer_data[1]+'"'
+    # customer_data[2] = '"'+ customer_data[2]+'"'
 
-############################## Configuration ##############################
+    db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+    print('Testing out DB')
+    cursor = db.cursor()
+    sql = "INSERT INTO Customers (first_name, last_name, email) VALUES (%s,%s,%s)"
+    val = ('"{0}","{1}","{2}"').format(customer_data[0], customer_data[1], customer_data[2])
+    print(val)
+    cursor.execute(sql, customer_data)
+    db.commit()
+    print(cursor.rowcount, "record inserted.")
+    db.close()
+    #requests.get()
+    #requests.post(REST_SERVER + "/books", json=user_data)
+    return render_to_response('did_login.html',{'error':'signed up.'}, request=req)
+
+def get_signup_printer(req):
+    return render_to_response('signup.html',{}, request=req)
+
+def post_signup_printer(req):
+    user_data = {
+    'First Name': req.params['print_f_name'],
+    'Last Name': req.params['print_l_name'],
+    'Email': req.params['print_email']
+    }
+    print(user_data)
+    print("Testing out dictionary access: Printer\n")
+    printer_data = list(user_data.values())
+    print(printer_data)
+
+    db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+    print('Testing out DB')
+    cursor = db.cursor()
+    sql = "INSERT INTO Printers (first_name, last_name, email) VALUES (%s,%s,%s)"
+    val = ('"{0}","{1}","{2}"').format(printer_data[0], printer_data[1], printer_data[2])
+    print(val)
+    cursor.execute(sql, printer_data)
+    db.commit()
+    print(cursor.rowcount, "record inserted.")
+    db.close()
+    #requests.get()
+    #requests.post(REST_SERVER + "/books", json=user_data)
+    return render_to_response('did_login.html',{'error':'signed up.'}, request=req)
+
+def get_features(req):
+    return render_to_response('features.html',{}, request=req)
+
+def get_pricing(req):
+    return render_to_response('pricing.html',{}, request=req)
+
+def post_admin(req):
+    Books = requests.get(REST_SERVER + "/books").json()
+    print(req.params['confirm'])
+    string = req.params['confirm']
+    chooser = string.split('**')
+    chooser_data = {
+    'username': chooser[0],
+    'choose': chooser[1]
+    }
+
+    requests.post(REST_SERVER + "/button", json=chooser)
+    return render_to_response('show_admin.html',{'books': Books}, request=req)
+
+#Home Page (index_page)
+def get_home(req):
+    return render_to_response('index.html', {}, request=req)
+
+#About Page
+def get_about(req):
+    return render_to_response('vision.html',{}, request=req)
+
+#Contact Page
+def get_customer_support(req):
+    return render_to_response('customer-support-new.html',{},request=req)
+
+#Login Page
+def get_login(req):
+    return render_to_response('sign-in.html', {}, request=req)
+
+#Signup page
+def get_signup(req):
+    return render_to_response('sign-up-main-copy.html', {}, request=req)
+
+#404 error
+def get_404(req):
+    return render_to_response('404.html', {}, request=req)
+
 if __name__ == '__main__':
 #  config = Configurator()
     with Configurator() as config:
@@ -51,25 +146,48 @@ if __name__ == '__main__':
         config.include('pyramid_jinja2')
         config.add_jinja2_renderer('.html')
 
-        config.add_route('homepage', '/')
-        config.add_view(main_page, route_name='homepage', request_method='GET')
+        config.add_route('v1', '/')
+        config.add_view(main_page, route_name='v1')
 
-        config.add_route('SignupUser','/SignupUser')
-        config.add_view(get_SignupUser, route_name='SignupUser', request_method='GET')
-        config.add_view(post_SignupUser, route_name='SignupUser', request_method='POST')
+        config.add_route('home', '/home')
+        config.add_view(get_home, route_name='home', request_method='GET')
+        #config.add_view(post_login, route_name='login', request_method='POST')
 
-        config.add_route('SignupPrinter','/SignupPrinter')
-        config.add_view(get_SignupPrinter, route_name='SignupPrinter', request_method='GET')
-        config.add_view(post_SignupPrinter, route_name='SignupPrinter', request_method='POST')
+        config.add_route('signup','/signup')
+        config.add_view(get_signup, route_name='signup', request_method='GET')
 
-        config.add_route('AboutUs','/AboutUs')
-        config.add_view(get_AboutUs, route_name='AboutUs', request_method='GET')
+        config.add_route('signup_customer','/signup_customer')
+        config.add_view(get_signup_printer, route_name='signup_customer', request_method='GET')
+        config.add_view(post_signup_customer, route_name='signup_customer', request_method='POST')
+
+        config.add_route('signup_printer','/signup_printer')
+        config.add_view(get_signup, route_name='signup_printer', request_method='GET')
+        config.add_view(post_signup_printer, route_name='signup_printer', request_method='POST')
+
+        config.add_route('about','/about')
+        config.add_view(get_about, route_name='about', request_method='GET')
+
+        config.add_route('contact','/contact')
+        config.add_view(get_customer_support, route_name='contact', request_method='GET')
+
+        config.add_route('signinn','/signin')
+        config.add_view(get_customer_support, route_name='signin', request_method='GET')
+
+        config.add_route('notfound','/notfound')
+        config.add_view(get_404, route_name='notfound', request_method='GET')
+
+        config.add_route('features','/features')
+        config.add_view(get_features, route_name='features', request_method='GET')
+
+        config.add_route('pricing','/pricing')
+        config.add_view(get_pricing, route_name='pricing', request_method='GET')
+        #config.add_view(post_admin, route_name='admin', request_method='POST')
+
+  #config.add_route("email", "/signup")
+  #config.add_view(onSignUp, route_name1="email")
+  #config.add_view(onSignup, route_name2="password")
 
         config.add_static_view(name='/', path='./public', cache_max_age=3600)
         app = config.make_wsgi_app()
-
 server = make_server('0.0.0.0', 5000, app)
 server.serve_forever()
-
-
-
